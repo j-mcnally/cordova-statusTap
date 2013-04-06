@@ -28,7 +28,7 @@
   if (!initialized) {
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [tapRecognizer setNumberOfTapsRequired:2];
+    [tapRecognizer setNumberOfTapsRequired:1];
     [tapRecognizer setNumberOfTouchesRequired:1];
     [self setRecognizer:tapRecognizer];
     [overlay setFrame:CGRectMake(0, 0, [UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
