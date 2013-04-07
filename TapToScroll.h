@@ -16,7 +16,7 @@
 }
 
 
-@property (nonatomic) UITapGestureRecognizer *recognizer;
+@property (nonatomic, retain) UITapGestureRecognizer *recognizer;
 
 
 -(void) initListener:(CDVInvokedUrlCommand*)command;
