@@ -58,6 +58,8 @@
     [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     [[[overlay rootViewController] view] setBackgroundColor:[UIColor clearColor]];
 
+    [self rotateToStatusBarFrame];
+
     [[[overlay rootViewController] view] addGestureRecognizer:[self recognizer]];
     [self setupRotationListener];
     [overlay setClipsToBounds:YES];
