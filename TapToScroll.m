@@ -8,6 +8,24 @@
 
 #import "TapToScroll.h"
 
+@interface RotationLessViewController : UIViewController
+
+@end
+
+@implementation RotationLessViewController
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+  return NO;
+}
+
+-(BOOL)shouldAutorotate {
+  return  NO;
+}
+
+@end
+
 
 @implementation TapToScroll
 
@@ -35,18 +53,61 @@
     
 
     overlay.windowLevel = UIWindowLevelStatusBar+1.f;
-    [overlay setRootViewController:[[UIViewController alloc] init]];
+    [overlay setRootViewController:[[RotationLessViewController alloc] init]];
     [overlay setHidden:NO];
-    [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
+    [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     [[[overlay rootViewController] view] setBackgroundColor:[UIColor clearColor]];
 
     [[[overlay rootViewController] view] addGestureRecognizer:[self recognizer]];
+    [self setupRotationListener];
+    [overlay setClipsToBounds:YES];
   }
   initialized = YES;
 }
 
+
+-(void) setupRotationListener {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationWillChange:) name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationDidChange:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+}
+
+
+-(void) orientationWillChange: (NSNotification *)notification {
+  [[[overlay rootViewController] view]  setHidden:YES];
+}
+
+
+-(void) orientationDidChange: (NSNotification *)notification {
+  [[[overlay rootViewController] view]  setHidden:NO];
+  [self rotateToStatusBarFrame];
+
+}
+
 -(void) tapped:(UITapGestureRecognizer *)sender {
   [webView stringByEvaluatingJavaScriptFromString:@"var evt = document.createEvent(\"Event\"); evt.initEvent(\"statusTap\",true,true); window.dispatchEvent(evt);"];
+}
+
+
+- (void)rotateToStatusBarFrame {
+
+  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+  CGFloat pi = (CGFloat)M_PI;
+	if (orientation == UIDeviceOrientationPortrait) {
+		overlay.transform = CGAffineTransformIdentity;
+    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
+	}else if (orientation == UIDeviceOrientationLandscapeLeft) {
+    overlay.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
+  }else if (orientation == UIDeviceOrientationLandscapeRight) {
+    overlay.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
+    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
+  }else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+    overlay.transform = CGAffineTransformMakeRotation(pi);
+    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
+  }
+  overlay.windowLevel = UIWindowLevelStatusBar+1.f;
+ 
 }
 
 
