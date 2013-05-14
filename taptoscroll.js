@@ -3,7 +3,7 @@ var TapToScroll = function() {
 }
 
 TapToScroll.prototype.initListener = function() {
-  cordova.exec("TapToScroll.initListener");
+cordova.exec(null, null, "TapToScroll", "initListener",[]);
 };
 
 if(!window.plugins) {
