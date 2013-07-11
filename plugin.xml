@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  id="com.jmcnally.phonegap.plugins.TapToScroll"
+  version="1.0.0">
+
+  <name>TapToScroll</name>
+
+  <description>
+    Capture tap events on the status bar.
+  </description>
+
+  <license>MIT</license>
+
+  <asset src="taptoscroll.js" target="taptoscroll.js" />
+
+  <engines>
+    <engine name="cordova" version=">=2.0.0" />
+  </engines>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="plugins">
+      <plugin name="TapToScroll" value="TapToScroll" />
+    </config-file>
+
+    <source-file src="TapToScroll.m" />
+    <header-file src="TapToScroll.h" />
+  </platform>
+
+</plugin>
