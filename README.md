@@ -31,7 +31,7 @@ window.addEventListener("statusTap", function() {
 	
 	//disable touch scroll
 	target.css({
-		'-webkit-overflow-scrolling' : 'none',
+		'-webkit-overflow-scrolling' : 'auto',
 		'overflow-y' : 'hidden'
 	});
 	
