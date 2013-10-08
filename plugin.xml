@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
  
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-           id="com.phonegap.LowLatencyAudio"
+           id="com.phonegap.TapToScroll"
       version="0.1.0">
     <name>TapToScroll</name>
     <description>Tap To Scroll plugin for iOS, forked from https://github.com/j-mcnally/cordova-statusTap</description>
