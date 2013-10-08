@@ -5,57 +5,64 @@ Capture tap events on the status bar.
 
 This plugin is aimed at libraries like Sencha for users who want to execute custom code like scrolling their list views on status tap.
 
+By j-mcnally and triceam
+
 Installation
 ============
 
-Plugman
--------
-
-If you don't have [node.js](http://nodejs.org/) or [plugman](https://github.com/apache/cordova-plugman) yet, install them, then run
+To use this plugin, all you have to do is add this to your project use the PhoneGap CLI:
 
 ```
-plugman --platform ios --project [TARGET-PATH] --plugin [PLUGIN-PATH]
-
-where
-  [TARGET-PATH] = path to folder containing your phonegap project
-  [PLUGIN-PATH] = path to folder containing this plugin
+phonegap local plugin add https://github.com/triceam/cordova-statusTap
 ```
+The CLI tooling sets up all JS file references, and the plugin will initialize itself.  
 
-For additional info, take a look at the [plugman documentation](https://github.com/apache/cordova-plugman/blob/master/README.md)
+Then to add a listener for the tap implement after PhoneGap/Cordova's onDeviceReady has been fired:
 
-By Hand
--------
-
-Add
-```html
-<script type="text/javascript" src="js/taptoscroll.js"></script>
 ```
-to index.html
-
-Add `taptoscroll.js` to your www folder
-
-Also make sure to add the .h and .m files to your main project.
-
-And add the following to your config.xml
-```xml
-<plugin name="TapToScroll" value="TapToScroll" />
-```
-
-Usage
-=====
-
-Add
-
-```js
-window.plugins.tapToScroll.initListener();
-```
-
-to onDeviceReady.
-
-Then to add a listener for the tap implement
-
-```js
 window.addEventListener("statusTap", function() {
   alert("status tap");
 });
 ```
+
+If you want to scroll a div based on this event, you can do something like the following (note, this is jQuery syntax):
+
+```
+window.addEventListener("statusTap", function() {
+	var target = $("#scroller");
+	
+	//disable touch scroll
+	target.css({
+		'-webkit-overflow-scrolling' : 'auto',
+		'overflow-y' : 'hidden'
+	});
+	
+	//animate
+	target.animate({ scrollTop: 0}, 300, "swing", function(){
+		
+		//re-enable touch scrolling
+		target.css({
+			'-webkit-overflow-scrolling' : 'touch',
+			'overflow-y' : 'scroll'
+		});
+	});
+});
+```
+
+This disables touch scrolling to kill an inertial scrolling in progress, animates it, then re-enables touch scrolling once the animation is complete.
+
+
+
+That's it... very simple.
+
+
+Details
+============
+
+Updated to Cordova 3.0 by triceam
+
+Triceam's Changes include:
+
+1. Updated for PhoneGap/Cordova CLI usage
+2. Added auto-initialization - no need to manually initialize anymore
+3. Updated ARC compatibility
