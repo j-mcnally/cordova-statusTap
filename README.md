@@ -33,7 +33,9 @@ Then to add a listener for the tap implement
         });
 ```
 
-Also make sure to add the .h and .m files to your main project.
+To add this to your project use the PhoneGap CLI:
 
-And add the following to your config.xml
-`<plugin name="TapToScroll" value="TapToScroll" />`
+```
+        phonegap local plugin add https://github.com/triceam/cordova-statusTap
+```
+

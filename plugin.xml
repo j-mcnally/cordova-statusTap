@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.phonegap.LowLatencyAudio"
+      version="0.1.0">
+    <name>TapToScroll</name>
+    <description>Tap To Scroll plugin for iOS, forked from https://github.com/j-mcnally/cordova-statusTap</description>
+    <license>MIT</license>
+    <keywords>phonegap,ios,tap,scroll</keywords>
+ 
+ 
+    <js-module src="www/taptoscroll.js" name="TapToScroll">
+    	<clobbers target="window.TapToScroll" />
+    </js-module>
+ 
+     
+     
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="TapToScroll">
+                <param name="ios-package" value="TapToScroll"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/TapToScroll.h" />
+        <source-file src="src/ios/TapToScroll.m" />
+    </platform>  
+</plugin>
