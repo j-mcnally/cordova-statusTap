@@ -23,6 +23,34 @@ window.addEventListener("statusTap", function() {
 });
 ```
 
+If you want to scroll a div based on this event, you can do something like the following (note, this is jQuery syntax):
+
+```
+window.addEventListener("statusTap", function() {
+	var target = $("#scroller");
+	
+	//disable touch scroll
+	target.css({
+		'-webkit-overflow-scrolling' : 'none',
+		'overflow-y' : 'hidden'
+	});
+	
+	//animate
+	target.animate({ scrollTop: 0}, 300, "swing", function(){
+		
+		//re-enable touch scrolling
+		target.css({
+			'-webkit-overflow-scrolling' : 'touch',
+			'overflow-y' : 'scroll'
+		});
+	});
+});
+```
+
+This disables touch scrolling to kill an inertial scrolling in progress, animates it, then re-enables touch scrolling once the animation is complete.
+
+
+
 That's it... very simple.
 
 
