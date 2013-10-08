@@ -43,28 +43,30 @@
 }
 
 -(void) initListener:(CDVInvokedUrlCommand*)command {
-  if (!initialized) {
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-    [tapRecognizer setNumberOfTapsRequired:1];
-    [tapRecognizer setNumberOfTouchesRequired:1];
-    [self setRecognizer:tapRecognizer];
-    [overlay setFrame:CGRectMake(0, 0, [UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
-    
+    [self.commandDelegate runInBackground:^{
+        if (!initialized) {
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+            [tapRecognizer setNumberOfTapsRequired:1];
+            [tapRecognizer setNumberOfTouchesRequired:1];
+            [self setRecognizer:tapRecognizer];
+            [overlay setFrame:CGRectMake(0, 0, [UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
+            
 
-    overlay.windowLevel = UIWindowLevelStatusBar+1.f;
-    [overlay setRootViewController:[[RotationLessViewController alloc] init]];
-    [overlay setHidden:NO];
-    [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    [[[overlay rootViewController] view] setBackgroundColor:[UIColor clearColor]];
+            overlay.windowLevel = UIWindowLevelStatusBar+1.f;
+            [overlay setRootViewController:[[RotationLessViewController alloc] init]];
+            [overlay setHidden:NO];
+            [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+            [[[overlay rootViewController] view] setBackgroundColor:[UIColor clearColor]];
 
-    [self rotateToStatusBarFrame];
+            [self rotateToStatusBarFrame];
 
-    [[[overlay rootViewController] view] addGestureRecognizer:[self recognizer]];
-    [self setupRotationListener];
-    [overlay setClipsToBounds:YES];
-  }
-  initialized = YES;
+            [[[overlay rootViewController] view] addGestureRecognizer:[self recognizer]];
+            [self setupRotationListener];
+            [overlay setClipsToBounds:YES];
+        }
+        initialized = YES;
+    }];
 }
 
 
