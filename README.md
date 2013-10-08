@@ -8,34 +8,19 @@ This plugin is aimed at libraries like Sencha for users who want to execute cust
 Installation
 ============
 
-Add
-```
-<script type="text/javascript" src="js/taptoscroll.js"></script>
-```
-to index.html
-
-Add `taptoscroll.js` to your www folder
-
-Add 
+To use this plugin, all you have to do is add this to your project use the PhoneGap CLI:
 
 ```
-window.plugins.tapToScroll.initListener();
+phonegap local plugin add https://github.com/triceam/cordova-statusTap
 ```
+The CLI tooling sets up all JS file references, and the plugin will initialize itself.  
 
-to onDeviceReady.
-
-
-Then to add a listener for the tap implement
+Then to add a listener for the tap implement after PhoneGap/Cordova's onDeviceReady has been fired:
 
 ```
-        window.addEventListener("statusTap", function() {
-          alert("status tap");
-        });
+window.addEventListener("statusTap", function() {
+  alert("status tap");
+});
 ```
 
-To add this to your project use the PhoneGap CLI:
-
-```
-        phonegap local plugin add https://github.com/triceam/cordova-statusTap
-```
-
+That's it... very simple.
