@@ -31,6 +31,7 @@ Details
 This implementation is forked from https://github.com/j-mcnally/cordova-statusTap
 
 Changes include:
+
 1. Updated for PhoneGap/Cordova CLI usage
 2. Added auto-initialization - no need to manually initialize anymore
 3. Updated for ARC compatibility
