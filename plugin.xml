@@ -1,35 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-  id="com.jmcnally.phonegap.plugins.TapToScroll"
-  version="1.0.0">
 
-  <name>TapToScroll</name>
-
-  <description>
-    Capture tap events on the status bar.
-  </description>
-
-  <license>MIT</license>
-
-  <js-module src="taptoscroll.js" name="module">
-    <clobbers target="plugins.TapToScroll" />
-  </js-module>
-  
-  <!-- ios -->
-  <platform name="ios">
-    <config-file target="config.xml" parent="/*">
-      <feature name="TapToScroll">
-        <param name="ios-package" value="TapToScroll" /> 
-      </feature>
-    </config-file>
-
-    <source-file src="TapToScroll.m" />
-    <header-file src="TapToScroll.h" />
-  </platform>
-
-</plugin>
-=======
- 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
            id="com.phonegap.TapToScroll"
       version="0.1.0">
