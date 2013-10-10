@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
   id="com.jmcnally.phonegap.plugins.TapToScroll"
   version="1.0.0">
@@ -58,4 +57,3 @@
         <source-file src="src/ios/TapToScroll.m" />
     </platform>  
 </plugin>
->>>>>>> fe900ade192410fff0772219bf256ff2633f338a
