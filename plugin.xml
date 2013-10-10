@@ -11,8 +11,10 @@
 
   <license>MIT</license>
 
-  <asset src="taptoscroll.js" target="taptoscroll.js" />
-
+  <js-module src="taptoscroll.js" name="module">
+    <clobbers target="plugins.TapToScroll" />
+  </js-module>
+  
   <!-- ios -->
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
