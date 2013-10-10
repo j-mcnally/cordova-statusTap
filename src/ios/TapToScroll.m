@@ -114,4 +114,12 @@
  
 }
 
+
+-(void) dealloc {
+#if ! __has_feature(objc_arc)
+  [super dealloc];
+#endif
+  NSLog(@"dealloc");
+}
+
 @end

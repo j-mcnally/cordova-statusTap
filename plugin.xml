@@ -12,16 +12,16 @@
 
   <license>MIT</license>
 
-  <asset src="taptoscroll.js" target="taptoscroll.js" />
-
-  <engines>
-    <engine name="cordova" version=">=2.0.0" />
-  </engines>
-
+  <js-module src="taptoscroll.js" name="module">
+    <clobbers target="plugins.TapToScroll" />
+  </js-module>
+  
   <!-- ios -->
   <platform name="ios">
-    <config-file target="config.xml" parent="plugins">
-      <plugin name="TapToScroll" value="TapToScroll" />
+    <config-file target="config.xml" parent="/*">
+      <feature name="TapToScroll">
+        <param name="ios-package" value="TapToScroll" /> 
+      </feature>
     </config-file>
 
     <source-file src="TapToScroll.m" />
