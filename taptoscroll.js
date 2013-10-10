@@ -1,5 +1,5 @@
-function TapToScroll() {
-};
+
+function TapToScroll() {}
 
 TapToScroll.prototype.initListener = function() {
 
@@ -11,7 +11,7 @@ TapToScroll.prototype.initListener = function() {
         // failCallback && failCallback(args);
     }
 
-	return cordova.exec(null, null, 'TapToScroll', 'initListener');
+	return cordova.exec(success, fail, 'TapToScroll', 'initListener', []);
 };
 
 module.exports = new TapToScroll();
