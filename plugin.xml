@@ -15,8 +15,10 @@
 
   <!-- ios -->
   <platform name="ios">
-    <config-file target="config.xml" parent="plugins">
-      <plugin name="TapToScroll" value="TapToScroll" />
+    <config-file target="config.xml" parent="/*">
+      <feature name="TapToScroll">
+        <param name="ios-package" value="TapToScroll" /> 
+      </feature>
     </config-file>
 
     <source-file src="TapToScroll.m" />
