@@ -1,14 +1,17 @@
-var TapToScroll = function() {
-  
-}
-
-TapToScroll.prototype.initListener = function() {
-cordova.exec(null, null, "TapToScroll", "initListener",[]);
+function TapToScroll() {
 };
 
-if(!window.plugins) {
-  window.plugins = {};
-}
-if(!window.plugins.tapToScroll) {
-  window.plugins.tapToScroll = new TapToScroll();
-}
+TapToScroll.prototype.initListener = function() {
+
+    function success(args) {
+        // successCallback && successCallback(args);
+    }
+
+    function fail(args) {
+        // failCallback && failCallback(args);
+    }
+
+	return cordova.exec(null, null, 'TapToScroll', 'initListener');
+};
+
+module.exports = new TapToScroll();
