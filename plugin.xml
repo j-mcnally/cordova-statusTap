@@ -25,5 +25,10 @@
 
         <header-file src="src/ios/TapToScroll.h" />
         <source-file src="src/ios/TapToScroll.m" />
+
+        <config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
+            <false/>
+        </config-file>
+        
     </platform>  
 </plugin>
