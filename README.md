@@ -1,6 +1,9 @@
 cordova-statusTap
 =================
 
+Modified to work with iOS8!
+---------------------------
+
 Capture tap events on the status bar.
 
 This plugin is aimed at libraries like Sencha for users who want to execute custom code like scrolling their list views on status tap.

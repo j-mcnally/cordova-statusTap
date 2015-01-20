@@ -17,7 +17,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-  return NO;
+  return YES;
 }
 
 -(BOOL)shouldAutorotate {
@@ -50,12 +50,10 @@
             [tapRecognizer setNumberOfTapsRequired:1];
             [tapRecognizer setNumberOfTouchesRequired:1];
             [self setRecognizer:tapRecognizer];
-            [overlay setFrame:CGRectMake(0, 0, [UIApplication sharedApplication].statusBarFrame.size.width, [UIApplication sharedApplication].statusBarFrame.size.height)];
-            
 
-            overlay.windowLevel = UIWindowLevelStatusBar+1.f;
             [overlay setRootViewController:[[RotationLessViewController alloc] init]];
             [overlay setHidden:NO];
+            
             [[[overlay rootViewController] view] setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
             [[[overlay rootViewController] view] setBackgroundColor:[UIColor clearColor]];
 
@@ -93,25 +91,28 @@
 
 
 - (void)rotateToStatusBarFrame {
+    float screenHeight = [UIScreen mainScreen].bounds.size.height;
+    float screenWidth = [UIScreen mainScreen].bounds.size.width;
+    float barHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
 
-  UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    CGRect frame;
     
-  CGFloat pi = (CGFloat)M_PI;
-	if (orientation == UIDeviceOrientationPortrait) {
-		overlay.transform = CGAffineTransformIdentity;
-    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
-	}else if (orientation == UIDeviceOrientationLandscapeLeft) {
-    overlay.transform = CGAffineTransformMakeRotation(pi * (90.f) / 180.0f);
-    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
-  }else if (orientation == UIDeviceOrientationLandscapeRight) {
-    overlay.transform = CGAffineTransformMakeRotation(-pi * (90.f) / 180.0f);
-    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
-  }else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
-    overlay.transform = CGAffineTransformMakeRotation(-pi);
-    overlay.frame = [UIApplication sharedApplication].statusBarFrame;
-  }
-  overlay.windowLevel = UIWindowLevelStatusBar+1.f;
- 
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (orientation == UIDeviceOrientationPortrait) {
+        frame = CGRectMake(0, 0, screenWidth, barHeight);
+    }
+    else if (orientation == UIDeviceOrientationLandscapeLeft) {
+        frame = CGRectMake(screenHeight - barHeight, 0, barHeight, screenWidth);
+    }
+    else if (orientation == UIDeviceOrientationLandscapeRight) {
+        frame = CGRectMake(0, 0, barHeight, screenWidth);
+    }
+    else if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+        frame = CGRectMake(0, screenHeight - barHeight, screenWidth, barHeight);
+    }
+    
+    [overlay setFrame:frame];
+    [overlay setWindowLevel:(UIWindowLevelStatusBar+1.f)];
 }
 
 
