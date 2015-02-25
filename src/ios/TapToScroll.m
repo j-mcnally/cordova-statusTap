@@ -93,7 +93,7 @@
 - (void)rotateToStatusBarFrame {
     float screenHeight = [UIScreen mainScreen].bounds.size.height;
     float screenWidth = [UIScreen mainScreen].bounds.size.width;
-    float barHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    float barHeight = 20; //barHeight is always 20: http://www.idev101.com/code/User_Interface/sizes.html
 
     CGRect frame;
     
