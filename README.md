@@ -1,5 +1,5 @@
-cordova-statusTap
-=================
+cordova-statusTap, works with iOS8
+===================================
 
 Capture tap events on the status bar.
 
